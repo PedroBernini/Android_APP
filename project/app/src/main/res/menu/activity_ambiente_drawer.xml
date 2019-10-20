@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_geral"
+            android:icon="@drawable/ic_dashboard_black_24dp"
+            android:title="@string/title_geral"/>
+        <item
+            android:id="@+id/nav_pessoas"
+            android:icon="@drawable/pessoas"
+            android:title="@string/title_pessoas"/>
+        <item
+            android:id="@+id/nav_equipes"
+            android:icon="@drawable/equipes"
+            android:title="@string/title_equipes"/>
+        <item
+            android:id="@+id/nav_DISC"
+            android:icon="@drawable/ajuda"
+            android:title="@string/ajuda"/>
+        <item
+            android:id="@+id/nav_sair"
+            android:icon="@drawable/sair"
+            android:title="@string/title_sair"/>
+    </group>
+
+</menu>

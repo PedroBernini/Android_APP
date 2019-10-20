@@ -1,0 +1,97 @@
+<resources>
+    <string name="app_name">Team DISC</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_ambiente">Ambientes</string>
+    <string name="titulo_ambiente">Ambiente: Vendas</string>
+    <string name="botao_enter">Entrar</string>
+    <string name="botao_selecionar">Selecionar Ambiente</string>
+    <string name="ambientes_cadastrados">Ambientes Cadastrados</string>
+    <string name="equipes_cadastradas">Equipes Cadastradas</string>
+    <string name="pessoas_cadastradas">Pessoas Cadastradas</string>
+    <string name="botao_editar">Editar</string>
+    <string name="botao_criar_ambiente">+ Ambiente</string>
+    <string name="botao_criar_equipe">+ Equipe</string>
+    <string name="botao_criar_pessoa">+ Pessoa</string>
+    <string name="botao_pessoas">Pessoas</string>
+    <string name="botao_equipes">Equipes</string>
+    <string name="botao_meu_ambiente">Meu Ambiente</string>
+    <string name="botao_melhor_equipe">Melhor Equipe</string>
+    <string name="text_disc_ambiente">Distribuição DISC do Ambiente</string>
+    <string name="escolher_nome_ambiente">Digite o nome do ambiente</string>
+    <string name="escolher_nome_pessoa">Digite o nome da pessoa</string>
+    <string name="escolher_nome_equipe">Digite o nome da equipe</string>
+    <string name="escolha_tipo_ambiente">Escolha o tipo de ambiente</string>
+    <string name="title_pessoas">Pessoas</string>
+    <string name="title_equipes">Equipes</string>
+    <string name="ajuda">Entenda o DISC</string>
+    <string name="title_sair">Sair</string>
+    <string name="title_geral">Geral</string>
+    <string name="distribuicao_ambiente">Distribuição DISC do ambiente</string>
+    <string name="escolha_questoes">Selecione o adjetivo que melhor lhe descreve em cada linha da lista abaixo</string>
+    <string name="escolha_pessoas">Selecione as pessoas para formarão a equipe</string>
+    <string name="criar_nova_pessoa">Criar Pessoa</string>
+    <string name="criar_nova_equipe">Criar Equipe</string>
+    <string name="pessoas_da_equipe">Pessoas da equipe</string>
+
+    <string-array name="ambientes_array">
+        <item>@drawable/marketing</item>
+        <item>@drawable/organizacional</item>
+        <item>@drawable/producao</item>
+        <item>@drawable/vendas</item>
+        <item>@drawable/suporte</item>
+    </string-array>
+
+    <string-array name="spinner_ambientes">
+        <item>Ambiente de Marketing</item>
+        <item>Ambiente Organizacional</item>
+        <item>Ambiente de Produção</item>
+        <item>Ambiente de Vendas</item>
+        <item>Ambiente de Suporte</item>
+    </string-array>
+
+    <string-array name="array_teste">
+        <item>Ambiente de Marketing</item>
+        <item>Ambiente Organizacional</item>
+        <item>Ambiente de Produção</item>
+        <item>Ambiente de Vendas</item>
+        <item>Ambiente de Suporte</item>
+        <item>Ambiente de Marketing</item>
+        <item>Ambiente Organizacional</item>
+        <item>Ambiente de Produção</item>
+        <item>Ambiente de Vendas</item>
+        <item>Ambiente de Suporte</item>
+    </string-array>
+
+    <string name="title_activity_novo_ambiente">Criar Novo Ambiente</string>
+    <string name="title_activity_ambiente">Área do Ambiente</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Menu do Ambiente</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_pessoa">Análise Pessoal</string>
+    <string name="title_activity_equipe">Análise de Equipe</string>
+    <string name="title_activity_nova_pessoa">Criar nova Pessoa</string>
+    <string name="title_activity_nova_equipe">Criar nova Equipe</string>
+
+    <!-- Sobre o DISC -->
+    <string name="titulo_sobre_disc">O que é DISC?</string>
+    <string name="sobre_disc">Disc é um modelo para mapear as características comportamentais de uma pessoa.
+        A teoria DISC afirma que existem quatro padrões básicos de comportamento previsíveis observados. Compreendê-los pode se traduzir em sucesso profissional e alto grau nas relações pessoais.
+        DISC é um acrônimo para Dominância (D), Influência (I), Estabilidade (S) e Conformidade (C).
+    </string>
+
+    <string name="titulo_sobre_D">Perfil com maior índice de Dominância - D</string>
+    <string name="sobre_D">Este perfil enfatiza a possibilidade de moldar o ambiente, superando oposições para alcançar resultados.</string>
+
+    <string name="titulo_sobre_I">Perfil com maior índice de Dominância - I</string>
+    <string name="sobre_I">Este perfil enfatiza a possibilidade de moldar o ambiente, influenciando e persuadindo os demais.</string>
+
+    <string name="titulo_sobre_S">Perfil com maior índice de Dominância - S</string>
+    <string name="sobre_S">Este perfil enfatiza a possibilidade de cooperar com os demais dentro das circunstâncias existentes para realizar a tarefa.</string>
+
+    <string name="titulo_sobre_C">Perfil com maior índice de Dominância - C</string>
+    <string name="sobre_C">Este perfil enfatiza a possibilidade de trabalhar conscientemente dentro das circunstâncias existentes para assegurar qualidade e precisão.</string>
+
+</resources>
