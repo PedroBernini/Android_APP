@@ -12,6 +12,7 @@ import com.example.project.adapters.AmbientesAdapter;
 import com.example.project.ambiente.Ambiente;
 import com.example.project.ambiente.Equipe;
 import com.example.project.ambiente.Pessoa;
+import com.example.project.email.GmailSend;
 import com.example.project.model.Ambientes;
 
 import java.util.ArrayList;
@@ -178,6 +179,8 @@ public class MainActivity extends AppCompatActivity {
         else{
             Toast.makeText(this,"Já existe referência", Toast.LENGTH_SHORT).show();
         }*/
+
+        GmailSend send = new GmailSend("");
 
     }
 
