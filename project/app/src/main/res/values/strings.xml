@@ -18,7 +18,8 @@
     <string name="botao_melhor_equipe">Melhor Equipe</string>
     <string name="text_disc_ambiente">Distribuição DISC do Ambiente</string>
     <string name="escolher_nome_ambiente">Digite o nome do ambiente</string>
-    <string name="escolher_nome_pessoa">Digite o nome da pessoa</string>
+    <string name="escolher_nome_pessoa">Digite o nome</string>
+    <string name="escolher_email_pessoa">Digite o e-mail</string>
     <string name="escolher_nome_equipe">Digite o nome da equipe</string>
     <string name="escolha_tipo_ambiente">Escolha o tipo de ambiente</string>
     <string name="title_pessoas">Pessoas</string>

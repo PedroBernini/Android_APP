@@ -3,6 +3,7 @@ package com.example.project.ambiente;
 public class Pessoa {
 
     private String nome;
+    private String email;
     private int notaD;
     private int notaI;
     private int notaS;
@@ -10,6 +11,16 @@ public class Pessoa {
 
     public Pessoa(String nome, int notaD, int notaI, int notaS, int notaC) {
         this.nome = nome;
+        this.email = "";
+        this.notaD = notaD;
+        this.notaI = notaI;
+        this.notaS = notaS;
+        this.notaC = notaC;
+    }
+
+    public Pessoa(String nome, String email, int notaD, int notaI, int notaS, int notaC) {
+        this.nome = nome;
+        this.email = email;
         this.notaD = notaD;
         this.notaI = notaI;
         this.notaS = notaS;
@@ -54,6 +65,14 @@ public class Pessoa {
 
     public void setNotaC(int notaC) {
         this.notaC = notaC;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public char[] ordenarNotas() {

@@ -173,15 +173,8 @@ public class MainActivity extends AppCompatActivity {
         adapter = new AmbientesAdapter(this, Ambientes.ambientes);
         listViewAmbientes.setAdapter(adapter);
 
-        /*if(savedInstanceState == null) {
-            Toast.makeText(this,"Não existe referência", Toast.LENGTH_SHORT).show();
-        }
-        else{
-            Toast.makeText(this,"Já existe referência", Toast.LENGTH_SHORT).show();
-        }*/
-
-        GmailSend send = new GmailSend("");
-
+        Intent intent = new Intent(this, IniciarActivity.class);
+        this.startActivity(intent);
     }
 
     public void criarNovoAmbiente(View view) {

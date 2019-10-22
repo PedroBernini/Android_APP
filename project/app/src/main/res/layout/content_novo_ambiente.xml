@@ -7,7 +7,8 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".activities.NovoAmbienteActivity"
     tools:showIn="@layout/activity_novo_ambiente">
-
+android:textColor="#fff"
+        android:background="#549b64"
     <EditText
         android:id="@+id/editTxtNomeAmbiente"
         android:layout_width="match_parent"
@@ -47,10 +48,12 @@ Pessoa
 
     <Button
         android:id="@+id/btnCriarAmbiente"
-        android:layout_width="150dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:textSize="18dp"
         android:text="Criar Ambiente"
+        android:textColor="#fff"
+        android:background="#549b64"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
         android:onClick="clickCriar"/>

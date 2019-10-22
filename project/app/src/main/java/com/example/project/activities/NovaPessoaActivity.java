@@ -25,6 +25,7 @@ public class NovaPessoaActivity extends AppCompatActivity {
     private ListView listViewQuestoes;
     private QuestoesAdapter adapter;
     private EditText editNomePessoa;
+    private EditText editEmailPessoa;
     public static List<Questao> questoes;
 
     @Override
@@ -37,6 +38,7 @@ public class NovaPessoaActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         editNomePessoa = (EditText) findViewById(R.id.editNomePessoa);
+        editEmailPessoa = (EditText) findViewById(R.id.editEmailPessoa);
 
         questoes = Arrays.asList(Questoes.questoes);
         for(Questao questao : questoes) {
@@ -65,8 +67,10 @@ public class NovaPessoaActivity extends AppCompatActivity {
         }
 
         if(notaD + notaI + notaS + notaC == questoes.size()){
-            Pessoa novaPessoa = new Pessoa(editNomePessoa.getText().toString(), notaD, notaI, notaS, notaC);
-            Toast.makeText(this, "Nome: " + editNomePessoa.getText().toString() + "\n NotaD: " + notaD + "\n NotaI: " + notaI + "\nNotaS: " + notaS + "\nNotaC: " + notaC, Toast.LENGTH_SHORT).show();
+            String nome = editNomePessoa.getText().toString();
+            String email = editEmailPessoa.getText().toString();
+            Pessoa novaPessoa = new Pessoa(nome, email, notaD, notaI, notaS, notaC);
+            Toast.makeText(this, "Nome: " + novaPessoa.getNome() + "\n NotaD: " + novaPessoa.getNotaD() + "\n NotaI: " + novaPessoa.getNotaI() + "\nNotaS: " + novaPessoa.getNotaS() + "\nNotaC: " + novaPessoa.getNotaC() + "\nEmail: " + novaPessoa.getEmail(), Toast.LENGTH_SHORT).show();
             onBackPressed();
         } else {
             Toast.makeText(this, "Preencha os campos faltantes", Toast.LENGTH_SHORT).show();
