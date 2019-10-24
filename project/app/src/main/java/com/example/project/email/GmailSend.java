@@ -18,9 +18,8 @@ public class GmailSend extends javax.mail.Authenticator{
     private final String username = "teamdiscmessager";
     private final String password = "teamdisc";
     private String email_subject = "[Team DISC] [Relatório de teste DISC]";
-    private String email_body = "";
 
-    public GmailSend(String email_to, String nome){
+    public GmailSend(String email_to, String email_body){
 
         Log.i("GmailSend", email_to);
         Log.i("GmailSend",email_body);

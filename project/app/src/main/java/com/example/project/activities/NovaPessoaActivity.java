@@ -13,6 +13,8 @@ import android.widget.Toast;
 import com.example.project.R;
 import com.example.project.adapters.QuestoesAdapter;
 import com.example.project.ambiente.Pessoa;
+import com.example.project.email.GmailSend;
+import com.example.project.utils.CorpoEmail;
 import com.example.project.utils.Questao;
 import com.example.project.utils.Questoes;
 
@@ -71,6 +73,37 @@ public class NovaPessoaActivity extends AppCompatActivity {
             String email = editEmailPessoa.getText().toString();
             Pessoa novaPessoa = new Pessoa(nome, email, notaD, notaI, notaS, notaC);
             Toast.makeText(this, "Nome: " + novaPessoa.getNome() + "\n NotaD: " + novaPessoa.getNotaD() + "\n NotaI: " + novaPessoa.getNotaI() + "\nNotaS: " + novaPessoa.getNotaS() + "\nNotaC: " + novaPessoa.getNotaC() + "\nEmail: " + novaPessoa.getEmail(), Toast.LENGTH_SHORT).show();
+
+            char disc[] = novaPessoa.ordenarNotas();
+            char primeiroPadrao = disc[0];
+            char segundoPadrao = disc[1];
+
+            String padroesPerfil = "";
+
+            if (primeiroPadrao == 'D') {
+                padroesPerfil += CorpoEmail.dominancia;
+            } else if (primeiroPadrao == 'I') {
+                padroesPerfil += CorpoEmail.influencia;
+            } else if (primeiroPadrao == 'S') {
+                padroesPerfil += CorpoEmail.estabilidade;
+            } else if (primeiroPadrao == 'C') {
+                padroesPerfil += CorpoEmail.conformidade;
+            }
+
+            if (segundoPadrao == 'D') {
+                padroesPerfil += CorpoEmail.dominancia;
+            } else if (segundoPadrao == 'I') {
+                padroesPerfil += CorpoEmail.influencia;
+            } else if (segundoPadrao == 'S') {
+                padroesPerfil += CorpoEmail.estabilidade;
+            } else if (segundoPadrao == 'C') {
+                padroesPerfil += CorpoEmail.conformidade;
+            }
+
+            String conteudo = "Olá " + nome+"," +
+                    "\n" + CorpoEmail.cabecalho + padroesPerfil + CorpoEmail.desfecho;
+
+            GmailSend send = new GmailSend(email, conteudo);
             onBackPressed();
         } else {
             Toast.makeText(this, "Preencha os campos faltantes", Toast.LENGTH_SHORT).show();

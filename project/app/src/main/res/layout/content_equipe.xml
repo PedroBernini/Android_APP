@@ -83,6 +83,7 @@
                     android:id="@+id/resumoEquipe"
                     android:layout_width="match_parent"
                     android:text="MEU RESUMO"
+                    android:textAlignment="center"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_height="wrap_content"/>

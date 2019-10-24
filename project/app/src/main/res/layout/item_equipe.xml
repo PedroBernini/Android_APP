@@ -49,6 +49,7 @@
         android:layout_width="85dp"
         android:layout_height="40dp"
         android:layout_below="@+id/btn_visualizar_equipe"
+
         android:text="Remover"
         android:textSize="10dp"
         android:layout_alignParentRight="true"/>
