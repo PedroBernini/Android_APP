@@ -1,17 +1,16 @@
 package b194832_p204575.ft.unicamp.br.atividade01_fragmentos.jogo3;
 
+
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-
-import androidx.fragment.app.Fragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,21 +18,22 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 import b194832_p204575.ft.unicamp.br.atividade01_fragmentos.R;
+import b194832_p204575.ft.unicamp.br.atividade01_fragmentos.jogo3.firebase.FirebaseJogo3Alunos;
+import b194832_p204575.ft.unicamp.br.atividade01_fragmentos.jogo3.firebase.FirebaseJogo3Frases;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-
-
 public class FrasesAlunoFragment extends Fragment {
-
 
     private View lview;
     TextView textView;
     TextView txtResult;
+    String url = "https://aulafirebase-38b8e.firebaseio.com/BD/Jogo1";
+    int erro;
+    int acertos;
 
     String fraseCorreta;
 
@@ -72,6 +72,19 @@ public class FrasesAlunoFragment extends Fragment {
         frase4 = lview.findViewById(R.id.frase4);
         frase5 = lview.findViewById(R.id.frase5);
 
+        textView.setText("");
+        txtResult.setText("");
+
+        frase1.setText("");
+        frase2.setText("");
+        frase3.setText("");
+        frase4.setText("");
+        frase5.setText("");
+
+        listaFrases.clear();
+
+        radioGroup.clearCheck();
+
         new MyFrasesAlunoAsyncTask(this).execute();
 
         lview.findViewById(R.id.btnChecar).setOnClickListener(new View.OnClickListener() {
@@ -82,6 +95,49 @@ public class FrasesAlunoFragment extends Fragment {
         });
 
         return lview;
+    }
+
+    public void firebase(){
+
+        String comando = "GET";
+        String urlGet = url + "/.json";
+
+        new FirebaseJogo3Frases(this).execute(urlGet, comando);
+
+    }
+
+    public void atualizaFirebase(JSONObject jsonObject){
+
+        String comando = "PATCH";
+        String nomeSemEspaco = textView.getText().toString().replaceAll(" ", "_");
+        // String nomeSemEspaco = "Alfredo";
+
+        if((jsonObject.toString().toLowerCase().contains(nomeSemEspaco.toLowerCase())) == true){
+            try {
+                int acertosDB = jsonObject.getJSONObject(nomeSemEspaco).getInt("Acertos");
+                int errosDB = jsonObject.getJSONObject(nomeSemEspaco).getInt("Erros");
+
+                int acertoAtt = acertosDB + acertos;
+                int errosAtt = errosDB + erro;
+
+
+                String jsonInsert = "{\"Acertos\": \""+acertoAtt+"\", \"Erros\": \""+errosAtt+"\"}";
+                String urlInsert = url + "/"+nomeSemEspaco+"/.json";
+
+                new FirebaseJogo3Frases(this).execute(urlInsert, comando, jsonInsert);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }else{
+            String jsonInsert = "{\""+nomeSemEspaco+"\":{\"Acertos\":\""+Integer.toString(acertos)+"\",\"Erros\":\""+Integer.toString(erro)+"\"}}";
+            String urlInsert = url + "/.json";
+            new FirebaseJogo3Frases(this).execute(urlInsert, comando, jsonInsert);
+
+        }
+        acertos = 0;
+        erro = 0;
+
     }
 
     public void proximoJogo(){
@@ -115,6 +171,9 @@ public class FrasesAlunoFragment extends Fragment {
             }
         }, 1500);
 
+        acertos = 1;
+        firebase();
+
     }
 
     public void checar(){
@@ -141,6 +200,9 @@ public class FrasesAlunoFragment extends Fragment {
                     txtResult.setText("");
                 }
             }, 1000);
+
+            erro = 1;
+            firebase();
         }
     }
 
@@ -172,5 +234,4 @@ public class FrasesAlunoFragment extends Fragment {
         }
 
     }
-
 }

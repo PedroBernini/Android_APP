@@ -39,7 +39,7 @@ public class Alunos {
                     "<p>Pq escolheu o curso: Pois gosto de programação WEB e banco de dados</p>\n" +
                     "<p>Hobbies: Jogar e ler</p>"),
             new Aluno ("Luciano Souza Gomes Do Nascimento",R.drawable.luciano,"Nada a Declarar"),
-            new Aluno ("Matheus Costa Bonafé",R.drawable.matheus1,"Nada a Declarar"),
+            new Aluno ("Matheus Costa Bonafe",R.drawable.matheus1,"Nada a Declarar"),
             new Aluno ("Matheus Peron Baroni",R.drawable.matheus2,"<p>Olá, sou o Matheus, tenho 18 anos e vim de Piracicaba (a terra da pamonha). Adoro café, desenhar, programar, café, assistir séries, ouvir música, café e, pra não dizer que sou um completo sedentário, ando de bicicleta de vez em nunca... Foi depois de concluir o curso técnico que tive a certeza de que essa é a área que pretendo seguir :)</p>"),
             new Aluno ("NYKSON SOUZA KRENKIN DA SILVA",R.drawable.nykson,"Nada a declarar no perfil."),
             new Aluno ("Pablo Henrique Borsone",R.drawable.pablo,"<p>Olá! Me chamo Pablo Henrique Borsone, nasci em Mogi Mirim (cidade localizada no interior do estado de São Paulo), tenho 22 anos e estudante do curso de Análise e Desenvolvimento de Sistemas na UNICAMP no campus de Limeira - FT.</p>\n" +

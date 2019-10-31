@@ -105,9 +105,10 @@
 
         </LinearLayout>
 
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:orientation="horizontal"
             android:layout_marginTop="10dip">
 
             <Button
@@ -118,7 +119,13 @@
                 android:gravity="center"
                 android:text="Checar" />
 
-        </RelativeLayout>
+            <Button
+                android:id="@+id/btnNovoGame"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Novo Jogo" />
+
+        </LinearLayout>
 
         <LinearLayout
 

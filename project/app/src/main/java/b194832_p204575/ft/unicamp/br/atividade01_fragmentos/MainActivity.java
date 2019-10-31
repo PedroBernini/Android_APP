@@ -31,8 +31,10 @@ import b194832_p204575.ft.unicamp.br.atividade01_fragmentos.interfaces.OnBiograf
 import b194832_p204575.ft.unicamp.br.atividade01_fragmentos.internet.InternetFragment;
 import b194832_p204575.ft.unicamp.br.atividade01_fragmentos.jogo2.EstatisticaFragment;
 import b194832_p204575.ft.unicamp.br.atividade01_fragmentos.jogo2.NameFragment;
+import b194832_p204575.ft.unicamp.br.atividade01_fragmentos.jogo3.AlunosFraseFragment;
 import b194832_p204575.ft.unicamp.br.atividade01_fragmentos.jogo3.FrasesAlunoFragment;
 import b194832_p204575.ft.unicamp.br.atividade01_fragmentos.jogo3.Jogo3Fragment;
+import b194832_p204575.ft.unicamp.br.atividade01_fragmentos.jogo3.estatisticas.EstatFrasesAluno;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OnBiografiaRequest {
@@ -96,7 +98,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.stats_id) {
-            Toast.makeText(this, "Estatísticas", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Estatísticas Jogo 2", Toast.LENGTH_SHORT).show();
             if(fragmentManager.findFragmentByTag("estatistica_tag") == null){
                 EstatisticaFragment estatisticaFragment = new EstatisticaFragment();
                 replaceFragment(estatisticaFragment, "estatistica_tag");
@@ -109,6 +111,14 @@ public class MainActivity extends AppCompatActivity
                 MailFragment fragContato = new MailFragment();
                 replaceFragment(fragContato, "contato_tag");
             }
+            return true;
+        }  else if (id == R.id.stats_id_jogo3) {
+            Toast.makeText(this, "Estatística Jogo 3", Toast.LENGTH_SHORT).show();
+            Fragment estatFrasesAluno = fragmentManager.findFragmentByTag("estatFrasesAluno_fragment");
+            if (estatFrasesAluno == null) {
+                estatFrasesAluno = new EstatFrasesAluno();
+            }
+            replaceFragment(estatFrasesAluno, "estatFrasesAluno_fragment");
             return true;
         }
 
@@ -166,10 +176,10 @@ public class MainActivity extends AppCompatActivity
             }
             replaceFragment(nameFragment, "name");
         }else if (id == R.id.nav_jogo3){
-            Fragment jogo3Fragment = fragmentManager.findFragmentByTag("jogo3_Fragment");
-            if (jogo3Fragment == null)
-                jogo3Fragment = new Jogo3Fragment();
-            replaceFragment(jogo3Fragment, "jogo3_Fragment");
+            Fragment alunosFrase = fragmentManager.findFragmentByTag("alunosFrase_Fragment");
+            if (alunosFrase == null)
+                alunosFrase = new AlunosFraseFragment();
+            replaceFragment(alunosFrase, "alunosFrase_Fragment");
 
         } else if (id == R.id.nav_banco_de_dados) {
             Fragment dataBaseFragment = fragmentManager.findFragmentByTag("database_Fragment");
@@ -217,7 +227,7 @@ public class MainActivity extends AppCompatActivity
     public void replaceAlunosfrase(){
         Fragment alunosFrase = fragmentManager.findFragmentByTag("alunosFrase_Fragment");
         if (alunosFrase == null)
-            alunosFrase = new FrasesAlunoFragment();
+            alunosFrase = new AlunosFraseFragment();
         replaceFragment(alunosFrase, "alunosFrase_Fragment");
     }
 
