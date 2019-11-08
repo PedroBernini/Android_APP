@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/txtNomePessoa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NOME DA PESSOA"
+        android:textSize="16dp"
+        android:textColor="@color/colorAccent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/txtPredominancia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtNomePessoa"
+        android:text="Primário: Dominância"
+        android:textStyle="italic"
+        android:textSize="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"/>
+
+    <Button
+        android:id="@+id/btn_visualizar_pessoa"
+        android:layout_width="85dp"
+        android:layout_height="40dp"
+        android:text="Visualizar"
+        android:textSize="10dp"
+        android:layout_alignParentRight="true"/>
+
+    <Button
+        android:id="@+id/btn_remover_pessoa"
+        android:layout_width="85dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/btn_visualizar_pessoa"
+        android:text="Remover"
+        android:textSize="10dp"
+        android:layout_alignParentRight="true"/>
+
+</RelativeLayout>

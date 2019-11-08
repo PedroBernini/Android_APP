@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/txtNomeEquipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NOME DA EQUIPE"
+        android:textSize="16dp"
+        android:textColor="@color/colorAccent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/txtCaracteristicaPrimaria"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtNomeEquipe"
+        android:text="Primário: D"
+        android:textStyle="italic"
+        android:textSize="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:id="@+id/txtCaracteristicaSecundaria"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtCaracteristicaPrimaria"
+        android:text="Secundário: C"
+        android:textStyle="italic"
+        android:textSize="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"/>
+
+    <Button
+        android:id="@+id/btn_visualizar_equipe"
+        android:layout_width="85dp"
+        android:layout_height="40dp"
+        android:text="Visualizar"
+        android:textSize="10dp"
+        android:layout_alignParentRight="true"/>
+
+    <Button
+        android:id="@+id/btn_remover_equipe"
+        android:layout_width="85dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/btn_visualizar_equipe"
+
+        android:text="Remover"
+        android:textSize="10dp"
+        android:layout_alignParentRight="true"/>
+
+</RelativeLayout>

@@ -1,20 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="b194832_p204575.ft.unicamp.br.atividade01_fragmentos">
+    package="com.example.project">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/disc"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activities.IniciarActivity"></activity>
         <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".activities.NovaEquipeActivity"
+            android:label="@string/title_activity_nova_equipe"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.NovaPessoaActivity"
+            android:label="@string/title_activity_nova_pessoa"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.EquipeActivity"
+            android:label="@string/title_activity_equipe"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.PessoaActivity"
+            android:label="@string/title_activity_pessoa"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.AmbienteActivity"
+            android:label="@string/title_activity_ambiente"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.NovoAmbienteActivity"
+            android:label="@string/title_activity_novo_ambiente"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.MainActivity"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
