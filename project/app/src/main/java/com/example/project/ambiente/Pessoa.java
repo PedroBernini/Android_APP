@@ -2,12 +2,12 @@ package com.example.project.ambiente;
 
 public class Pessoa {
 
-    private String nome;
-    private String email;
-    private int notaD;
-    private int notaI;
-    private int notaS;
-    private int notaC;
+    public String nome;
+    public String email;
+    public int notaD;
+    public int notaI;
+    public int notaS;
+    public int notaC;
 
     public Pessoa(String nome, int notaD, int notaI, int notaS, int notaC) {
         this.nome = nome;

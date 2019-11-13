@@ -14,6 +14,8 @@ import com.example.project.ambiente.Equipe;
 import com.example.project.ambiente.Pessoa;
 import com.example.project.email.GmailSend;
 import com.example.project.model.Ambientes;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -173,8 +175,10 @@ public class MainActivity extends AppCompatActivity {
         adapter = new AmbientesAdapter(this, Ambientes.ambientes);
         listViewAmbientes.setAdapter(adapter);
 
+
         Intent intent = new Intent(this, IniciarActivity.class);
         this.startActivity(intent);
+
     }
 
     public void criarNovoAmbiente(View view) {

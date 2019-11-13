@@ -1,8 +1,6 @@
 package com.example.project.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -13,12 +11,10 @@ import android.widget.Toast;
 import com.example.project.R;
 import com.example.project.adapters.QuestoesAdapter;
 import com.example.project.ambiente.Pessoa;
-import com.example.project.email.GmailSend;
-import com.example.project.utils.CorpoEmail;
 import com.example.project.utils.Questao;
 import com.example.project.utils.Questoes;
+import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -53,6 +49,7 @@ public class NovaPessoaActivity extends AppCompatActivity {
         listViewQuestoes = (ListView)this.findViewById(R.id.listViewQuestoes);
         adapter = new QuestoesAdapter(this, questoes);
         listViewQuestoes.setAdapter(adapter);
+
     }
 
     public void criarNovaPessoa (View view) {
@@ -72,9 +69,14 @@ public class NovaPessoaActivity extends AppCompatActivity {
             String nome = editNomePessoa.getText().toString();
             String email = editEmailPessoa.getText().toString();
             Pessoa novaPessoa = new Pessoa(nome, email, notaD, notaI, notaS, notaC);
-            Toast.makeText(this, "Nome: " + novaPessoa.getNome() + "\n NotaD: " + novaPessoa.getNotaD() + "\n NotaI: " + novaPessoa.getNotaI() + "\nNotaS: " + novaPessoa.getNotaS() + "\nNotaC: " + novaPessoa.getNotaC() + "\nEmail: " + novaPessoa.getEmail(), Toast.LENGTH_SHORT).show();
 
-            char disc[] = novaPessoa.ordenarNotas();
+            //Inserção no Firebase
+
+            FirebaseDatabase firebaseDB = FirebaseDatabase.getInstance();
+            firebaseDB.getReference().child("Equipes").child("Pessoas").setValue(novaPessoa);
+            System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
+            /*char disc[] = novaPessoa.ordenarNotas();
             char primeiroPadrao = disc[0];
             char segundoPadrao = disc[1];
 
@@ -103,7 +105,7 @@ public class NovaPessoaActivity extends AppCompatActivity {
             String conteudo = "Olá " + nome+"," +
                     "\n" + CorpoEmail.cabecalho + padroesPerfil + CorpoEmail.desfecho;
 
-            GmailSend send = new GmailSend(email, conteudo);
+            GmailSend send = new GmailSend(email, conteudo);*/
             onBackPressed();
         } else {
             Toast.makeText(this, "Preencha os campos faltantes", Toast.LENGTH_SHORT).show();
