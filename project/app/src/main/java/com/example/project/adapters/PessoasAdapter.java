@@ -2,16 +2,27 @@ package com.example.project.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import com.example.project.R;
+import com.example.project.activities.AmbienteActivity;
+import com.example.project.activities.MainActivity;
 import com.example.project.activities.PessoaActivity;
 import com.example.project.ambiente.Pessoa;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
@@ -75,7 +86,11 @@ public class PessoasAdapter extends BaseAdapter {
         btnRemover.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                DatabaseReference reff = FirebaseDatabase.getInstance().getReference().child("Ambientes").child(AmbienteActivity.ambiente.getNomeAmbiente()).child("Pessoas");
+                reff.child(pessoas.get(position).getNome()).removeValue();
+                Toast.makeText(context, pessoas.get(position).getNome() + " foi removido(a)!", Toast.LENGTH_SHORT).show();
+                AmbienteActivity.ambiente.removerPessoa(position);
+                AmbienteActivity.ambiente.atualizarAmbiente();
             }
         });
 

@@ -8,10 +8,14 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.project.R;
+import com.example.project.activities.AmbienteActivity;
 import com.example.project.activities.EquipeActivity;
 import com.example.project.ambiente.Equipe;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
@@ -76,7 +80,10 @@ public class EquipesAdapter extends BaseAdapter {
         btnRemover.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                DatabaseReference reff = FirebaseDatabase.getInstance().getReference().child("Ambientes").child(AmbienteActivity.ambiente.getNomeAmbiente()).child("Equipes");
+                reff.child(equipes.get(position).getNome()).removeValue();
+                Toast.makeText(context, "A equipe " + equipes.get(position).getNome() + " foi removida!", Toast.LENGTH_SHORT).show();
+                AmbienteActivity.ambiente.removerEquipe(position);
             }
         });
 
