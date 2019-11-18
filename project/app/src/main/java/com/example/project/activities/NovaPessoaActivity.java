@@ -10,7 +10,10 @@ import android.widget.Toast;
 
 import com.example.project.R;
 import com.example.project.adapters.QuestoesAdapter;
+import com.example.project.ambiente.Database.PessoaDB;
 import com.example.project.ambiente.Pessoa;
+import com.example.project.email.GmailSend;
+import com.example.project.utils.CorpoEmail;
 import com.example.project.utils.Questao;
 import com.example.project.utils.Questoes;
 import com.google.firebase.database.FirebaseDatabase;
@@ -49,7 +52,6 @@ public class NovaPessoaActivity extends AppCompatActivity {
         listViewQuestoes = (ListView)this.findViewById(R.id.listViewQuestoes);
         adapter = new QuestoesAdapter(this, questoes);
         listViewQuestoes.setAdapter(adapter);
-
     }
 
     public void criarNovaPessoa (View view) {
@@ -67,46 +69,52 @@ public class NovaPessoaActivity extends AppCompatActivity {
 
         if(notaD + notaI + notaS + notaC == questoes.size()){
             String nome = editNomePessoa.getText().toString();
-            String email = editEmailPessoa.getText().toString();
-            Pessoa novaPessoa = new Pessoa(nome, email, notaD, notaI, notaS, notaC);
+            if(nome.equals("")) {
+                Toast.makeText(this, "Digite o nome da pessoa!", Toast.LENGTH_SHORT).show();
+            } else {
+                String email = editEmailPessoa.getText().toString();
+                Pessoa novaPessoa = new Pessoa(nome, email, notaD, notaI, notaS, notaC);
+                AmbienteActivity.ambiente.adicionarPessoa(novaPessoa);
+                AmbienteActivity.ambiente.atualizarAmbiente();
 
-            //Inserção no Firebase
+                PessoaDB pessoaFireBase = new PessoaDB(nome, email, Integer.toString(notaD), Integer.toString(notaI), Integer.toString(notaS), Integer.toString(notaC));
+                FirebaseDatabase firebaseDB = FirebaseDatabase.getInstance();
 
-            FirebaseDatabase firebaseDB = FirebaseDatabase.getInstance();
-            firebaseDB.getReference().child("Equipes").child("Pessoas").setValue(novaPessoa);
-            System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                firebaseDB.getReference().child("Ambientes").child(AmbienteActivity.ambiente.getNomeAmbiente()).child("Pessoas").child(pessoaFireBase.getNome()).setValue(pessoaFireBase);
 
-            /*char disc[] = novaPessoa.ordenarNotas();
-            char primeiroPadrao = disc[0];
-            char segundoPadrao = disc[1];
+                char disc[] = novaPessoa.ordenarNotas();
+                char primeiroPadrao = disc[0];
+                char segundoPadrao = disc[1];
 
-            String padroesPerfil = "";
+                String padroesPerfil = "";
 
-            if (primeiroPadrao == 'D') {
-                padroesPerfil += CorpoEmail.dominancia;
-            } else if (primeiroPadrao == 'I') {
-                padroesPerfil += CorpoEmail.influencia;
-            } else if (primeiroPadrao == 'S') {
-                padroesPerfil += CorpoEmail.estabilidade;
-            } else if (primeiroPadrao == 'C') {
-                padroesPerfil += CorpoEmail.conformidade;
+                if (primeiroPadrao == 'D') {
+                    padroesPerfil += CorpoEmail.dominancia;
+                } else if (primeiroPadrao == 'I') {
+                    padroesPerfil += CorpoEmail.influencia;
+                } else if (primeiroPadrao == 'S') {
+                    padroesPerfil += CorpoEmail.estabilidade;
+                } else if (primeiroPadrao == 'C') {
+                    padroesPerfil += CorpoEmail.conformidade;
+                }
+
+                if (segundoPadrao == 'D') {
+                    padroesPerfil += CorpoEmail.dominancia;
+                } else if (segundoPadrao == 'I') {
+                    padroesPerfil += CorpoEmail.influencia;
+                } else if (segundoPadrao == 'S') {
+                    padroesPerfil += CorpoEmail.estabilidade;
+                } else if (segundoPadrao == 'C') {
+                    padroesPerfil += CorpoEmail.conformidade;
+                }
+
+                String conteudo = "Olá " + nome+"," +
+                        "\n" + CorpoEmail.cabecalho + padroesPerfil + CorpoEmail.desfecho;
+
+                GmailSend send = new GmailSend(email, conteudo);
+                onBackPressed();
             }
 
-            if (segundoPadrao == 'D') {
-                padroesPerfil += CorpoEmail.dominancia;
-            } else if (segundoPadrao == 'I') {
-                padroesPerfil += CorpoEmail.influencia;
-            } else if (segundoPadrao == 'S') {
-                padroesPerfil += CorpoEmail.estabilidade;
-            } else if (segundoPadrao == 'C') {
-                padroesPerfil += CorpoEmail.conformidade;
-            }
-
-            String conteudo = "Olá " + nome+"," +
-                    "\n" + CorpoEmail.cabecalho + padroesPerfil + CorpoEmail.desfecho;
-
-            GmailSend send = new GmailSend(email, conteudo);*/
-            onBackPressed();
         } else {
             Toast.makeText(this, "Preencha os campos faltantes", Toast.LENGTH_SHORT).show();
         }

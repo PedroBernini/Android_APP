@@ -12,6 +12,7 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.example.project.R;
+import com.example.project.activities.NovaEquipeActivity;
 import com.example.project.activities.PessoaActivity;
 import com.example.project.ambiente.Pessoa;
 import java.util.List;
@@ -20,7 +21,6 @@ public class SelectPessoasAdapter extends BaseAdapter {
 
     public Context context;
     private List<Pessoa> pessoas;
-    private List<Pessoa> grupo;
 
     public SelectPessoasAdapter(Context context, List<Pessoa> pessoas) {
         this.context = context;
@@ -70,21 +70,21 @@ public class SelectPessoasAdapter extends BaseAdapter {
         CheckBox checkBoxPessoa = holder.checkBoxPessoa;
         TextView txtPredominancia = holder.txtPredominancia;
 
-
-        /*checkBoxPessoa.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        checkBoxPessoa.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                @Override
                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     int id = buttonView.getId();
                     if(id == R.id.checkBoxPessoa) {
-                        grupo.add(pessoas.get(position));
-                        System.out.println("Grupo size: " + grupo.size());
-                    } else {
-                        grupo.remove(pessoas.get(position));
-                        System.out.println("Grupo size: " + grupo.size());
+                        if (isChecked) {
+                            NovaEquipeActivity.grupo.add(NovaEquipeActivity.pessoas.get(position));
+                        }
+                        else {
+                            NovaEquipeActivity.grupo.remove(NovaEquipeActivity.pessoas.get(position));
+                        }
                     }
                }
            }
-        );*/
+        );
 
         checkBoxPessoa.setText(pessoa.getNome());
 

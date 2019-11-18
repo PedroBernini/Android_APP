@@ -12,7 +12,9 @@ import android.widget.Toast;
 import com.example.project.R;
 import com.example.project.activities.MainActivity;
 import com.example.project.ambiente.Ambiente;
+import com.example.project.ambiente.Database.AmbienteDB;
 import com.example.project.model.Ambientes;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class NovoAmbienteActivity extends AppCompatActivity {
 
@@ -41,12 +43,18 @@ public class NovoAmbienteActivity extends AppCompatActivity {
     public void clickCriar (View view) {
         String nomeAmbiente = editTextNomeAmbiente.getText().toString();
         String tipoAmbiente = String.valueOf(spinner.getSelectedItem());
-        Ambientes.ambientes.add(new Ambiente(nomeAmbiente, tipoAmbiente));
-        Toast.makeText(this,tipoAmbiente + " criado com sucesso!", Toast.LENGTH_SHORT).show();
-        /*Intent intent = new Intent(this, MainActivity.class);
-        this.startActivity(intent);*/
 
-        this.onBackPressed();
+        if (nomeAmbiente.equals("")) {
+            Toast.makeText(this,"Escolha um nome para o ambiente!", Toast.LENGTH_SHORT).show();
+        } else {
+            Ambiente novoAmbiente = new Ambiente(nomeAmbiente, tipoAmbiente);
+
+            AmbienteDB ambienteFireBase = new AmbienteDB(novoAmbiente.getNomeAmbiente(), novoAmbiente.getTipoAmbiente(), Integer.toString(novoAmbiente.getNotaD()), Integer.toString(novoAmbiente.getNotaI()), Integer.toString(novoAmbiente.getNotaS()), Integer.toString(novoAmbiente.getNotaC()));
+            FirebaseDatabase firebaseDB = FirebaseDatabase.getInstance();
+            firebaseDB.getReference().child("Ambientes").child(ambienteFireBase.getNomeAmbiente()).setValue(ambienteFireBase);
+
+            Toast.makeText(this,tipoAmbiente + " criado com sucesso!", Toast.LENGTH_SHORT).show();
+            this.onBackPressed();
+        }
     }
-
 }

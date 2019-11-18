@@ -1,7 +1,5 @@
 package com.example.project.utils;
 
-import com.example.project.activities.MainActivity;
-
 public class Questoes {
     public static Questao[] questoes = {
             new Questao("Energético(a)","Sociável","Controlado(a)","Atencioso(a)"),
