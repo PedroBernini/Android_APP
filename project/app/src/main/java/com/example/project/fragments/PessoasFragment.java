@@ -59,4 +59,8 @@ public class PessoasFragment extends Fragment {
 
         return view;
     }
+
+    public void teste() {
+        listViewPessoas.refreshDrawableState();
+    }
 }

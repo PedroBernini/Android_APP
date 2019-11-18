@@ -226,24 +226,10 @@ public class MainActivity extends AppCompatActivity {
         listViewAmbientes = (ListView)findViewById(R.id.listViewAmbientes);
         adapter = new AmbientesAdapter(this, Ambientes.ambientes);
         listViewAmbientes.setAdapter(adapter);
-
     }
-
-    protected void onStart() {
-        super.onStart();
-        adapter = new AmbientesAdapter(this, Ambientes.ambientes);
-        listViewAmbientes.setAdapter(adapter);
-    }
-
 
     public void criarNovoAmbiente(View view) {
         Intent intent = new Intent(this, NovoAmbienteActivity.class);
         this.startActivity(intent);
-    }
-
-    public void atualizaListaAmbientes() {
-        listViewAmbientes = (ListView)findViewById(R.id.listViewAmbientes);
-        adapter = new AmbientesAdapter(this, Ambientes.ambientes);
-        listViewAmbientes.setAdapter(adapter);
     }
 }

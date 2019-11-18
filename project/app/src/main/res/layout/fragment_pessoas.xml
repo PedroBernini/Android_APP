@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/layout_cima"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -22,25 +22,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/pessoas_cadastradas"
-                android:layout_alignParentLeft="true"
                 android:textSize="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="15dp"
                 android:layout_marginBottom="10dp"
                 android:layout_gravity="center"/>
 
-            <Button
-                android:id="@+id/btn_atualizar"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:textColor="#fff"
-                android:text="Atualizar"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"
-                android:layout_alignParentRight="true"
-                android:background="#3F51B5"/>
-
-        </RelativeLayout>
+        </LinearLayout>
 
         <ListView
             android:id="@+id/listViewPessoas"
