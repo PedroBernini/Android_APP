@@ -100,11 +100,11 @@ public class AmbientesAdapter extends BaseAdapter {
                         reff.child(ambientes.get(position).getNomeAmbiente()).removeValue();
                         Toast.makeText(context, "O ambiente " + ambientes.get(position).getNomeAmbiente() + " foi removido!", Toast.LENGTH_SHORT).show();
                         Ambientes.ambientes.remove(position);
+                        notifyDataSetChanged();
                     }
                 });
 
                 builder.setNegativeButton("Cancelar", null);
-
                 AlertDialog dialog = builder.create();
                 dialog.show();
             }

@@ -1,5 +1,6 @@
 package com.example.project.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -178,58 +179,54 @@ public class MainActivity extends AppCompatActivity {
             //loadBD();
         }
 
-        btn_atualizar = (Button) findViewById(R.id.btn_atualizar);
-        btn_atualizar.setOnClickListener(new View.OnClickListener() {
+        listViewAmbientes = (ListView) findViewById(R.id.listViewAmbientes);
+        Ambientes.ambientes.clear();
+        reff = FirebaseDatabase.getInstance().getReference().child("Ambientes");
+        reff.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onClick(View view) {
-                Ambientes.ambientes.clear();
-                reff = FirebaseDatabase.getInstance().getReference().child("Ambientes");
-                reff.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for (DataSnapshot postAmbiente: dataSnapshot.getChildren()) {
-                            String nomeAmbiente = postAmbiente.child("nomeAmbiente").getValue().toString();
-                            String tipoAmbiente = postAmbiente.child("tipoAmbiente").getValue().toString();
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot postAmbiente: dataSnapshot.getChildren()) {
+                    String nomeAmbiente = postAmbiente.child("nomeAmbiente").getValue().toString();
+                    String tipoAmbiente = postAmbiente.child("tipoAmbiente").getValue().toString();
 
-                            List<Pessoa> pessoasAmbiente = new ArrayList<>();
-                            for (DataSnapshot postPessoa : postAmbiente.child("Pessoas").getChildren()) {
-                                PessoaDB pessoaDB = postPessoa.getValue(PessoaDB.class);
-                                pessoasAmbiente.add(new Pessoa(pessoaDB.nome, pessoaDB.email, Integer.parseInt(pessoaDB.notaD), Integer.parseInt(pessoaDB.notaI), Integer.parseInt(pessoaDB.notaS), Integer.parseInt(pessoaDB.notaC)));
-                            }
+                    List<Pessoa> pessoasAmbiente = new ArrayList<>();
+                    for (DataSnapshot postPessoa : postAmbiente.child("Pessoas").getChildren()) {
+                        PessoaDB pessoaDB = postPessoa.getValue(PessoaDB.class);
+                        pessoasAmbiente.add(new Pessoa(pessoaDB.nome, pessoaDB.email, Integer.parseInt(pessoaDB.notaD), Integer.parseInt(pessoaDB.notaI), Integer.parseInt(pessoaDB.notaS), Integer.parseInt(pessoaDB.notaC)));
+                    }
 
-                            List<Equipe> equipesAmbiente = new ArrayList<>();
-                            for (DataSnapshot postEquipe : postAmbiente.child("Equipes").getChildren()) {
-                                String nomeEquipe = postEquipe.child("nome").getValue().toString();
+                    List<Equipe> equipesAmbiente = new ArrayList<>();
+                    for (DataSnapshot postEquipe : postAmbiente.child("Equipes").getChildren()) {
+                        String nomeEquipe = postEquipe.child("nome").getValue().toString();
 
-                                List<Pessoa> pessoasEquipe = new ArrayList<>();
-                                for (DataSnapshot postPessoasEquipe : postEquipe.child("Pessoas").getChildren()) {
-                                    PessoaDB pessoaDB = postPessoasEquipe.getValue(PessoaDB.class);
-                                    pessoasEquipe.add(new Pessoa(pessoaDB.nome, pessoaDB.email, Integer.parseInt(pessoaDB.notaD), Integer.parseInt(pessoaDB.notaI), Integer.parseInt(pessoaDB.notaS), Integer.parseInt(pessoaDB.notaC)));
-                                }
-
-                                equipesAmbiente.add(new Equipe(nomeEquipe, pessoasEquipe));
-                            }
-                            Ambientes.ambientes.add(new Ambiente(nomeAmbiente, tipoAmbiente, pessoasAmbiente, equipesAmbiente));
+                        List<Pessoa> pessoasEquipe = new ArrayList<>();
+                        for (DataSnapshot postPessoasEquipe : postEquipe.child("Pessoas").getChildren()) {
+                            PessoaDB pessoaDB = postPessoasEquipe.getValue(PessoaDB.class);
+                            pessoasEquipe.add(new Pessoa(pessoaDB.nome, pessoaDB.email, Integer.parseInt(pessoaDB.notaD), Integer.parseInt(pessoaDB.notaI), Integer.parseInt(pessoaDB.notaS), Integer.parseInt(pessoaDB.notaC)));
                         }
-                        finish();
-                        startActivity(getIntent());
-                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        System.out.println("Erro ao buscar no Firebase!");
+                        equipesAmbiente.add(new Equipe(nomeEquipe, pessoasEquipe));
                     }
-                });
+                    Ambientes.ambientes.add(new Ambiente(nomeAmbiente, tipoAmbiente, pessoasAmbiente, equipesAmbiente));
+                }
+                AmbientesAdapter adapter = new AmbientesAdapter(getContext(), Ambientes.ambientes);
+                listViewAmbientes.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                System.out.println("Erro ao buscar no Firebase!");
             }
         });
-
-        listViewAmbientes = (ListView)findViewById(R.id.listViewAmbientes);
-        adapter = new AmbientesAdapter(this, Ambientes.ambientes);
-        listViewAmbientes.setAdapter(adapter);
     }
 
     public void criarNovoAmbiente(View view) {
+        finish();
         Intent intent = new Intent(this, NovoAmbienteActivity.class);
         this.startActivity(intent);
+    }
+
+    public Context getContext() {
+        return this;
     }
 }
