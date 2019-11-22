@@ -1,6 +1,8 @@
 package com.example.project.adapters;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.view.LayoutInflater;
@@ -16,6 +18,9 @@ import com.example.project.activities.AmbienteActivity;
 import com.example.project.activities.MainActivity;
 import com.example.project.R;
 import com.example.project.ambiente.Ambiente;
+import com.example.project.model.Ambientes;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
@@ -84,10 +89,24 @@ public class AmbientesAdapter extends BaseAdapter {
         btnRemover.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, MainActivity.class);
-                intent.putExtra("position_remove", position);
-                context.startActivity(intent);
-                Toast.makeText(context, "Ambiente removido!", Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Remoção de ambiente");
+                builder.setMessage("Tem certeza que deseja remover o ambiente? (Você perderá todas as pessoas e equipes!)");
+
+                builder.setPositiveButton("Remover", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        DatabaseReference reff = FirebaseDatabase.getInstance().getReference().child("Ambientes");
+                        reff.child(ambientes.get(position).getNomeAmbiente()).removeValue();
+                        Toast.makeText(context, "O ambiente " + ambientes.get(position).getNomeAmbiente() + " foi removido!", Toast.LENGTH_SHORT).show();
+                        Ambientes.ambientes.remove(position);
+                        notifyDataSetChanged();
+                    }
+                });
+
+                builder.setNegativeButton("Cancelar", null);
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
 

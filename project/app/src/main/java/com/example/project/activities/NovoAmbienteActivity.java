@@ -36,7 +36,9 @@ public class NovoAmbienteActivity extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        onBackPressed();
+        finish();
+        Intent intent = new Intent(this, MainActivity.class);
+        this.startActivity(intent);
         return true;
     }
 
@@ -48,13 +50,12 @@ public class NovoAmbienteActivity extends AppCompatActivity {
             Toast.makeText(this,"Escolha um nome para o ambiente!", Toast.LENGTH_SHORT).show();
         } else {
             Ambiente novoAmbiente = new Ambiente(nomeAmbiente, tipoAmbiente);
-
             AmbienteDB ambienteFireBase = new AmbienteDB(novoAmbiente.getNomeAmbiente(), novoAmbiente.getTipoAmbiente(), Integer.toString(novoAmbiente.getNotaD()), Integer.toString(novoAmbiente.getNotaI()), Integer.toString(novoAmbiente.getNotaS()), Integer.toString(novoAmbiente.getNotaC()));
             FirebaseDatabase firebaseDB = FirebaseDatabase.getInstance();
             firebaseDB.getReference().child("Ambientes").child(ambienteFireBase.getNomeAmbiente()).setValue(ambienteFireBase);
-
             Toast.makeText(this,tipoAmbiente + " criado com sucesso!", Toast.LENGTH_SHORT).show();
-            this.onBackPressed();
+            Intent intent = new Intent(this, MainActivity.class);
+            this.startActivity(intent);
         }
     }
 }

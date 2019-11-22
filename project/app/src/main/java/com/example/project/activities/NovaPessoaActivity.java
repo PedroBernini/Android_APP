@@ -112,6 +112,7 @@ public class NovaPessoaActivity extends AppCompatActivity {
                         "\n" + CorpoEmail.cabecalho + padroesPerfil + CorpoEmail.desfecho;
 
                 GmailSend send = new GmailSend(email, conteudo);
+                Toast.makeText(this, "Pessoa registrada com sucesso!", Toast.LENGTH_SHORT).show();
                 onBackPressed();
             }
 

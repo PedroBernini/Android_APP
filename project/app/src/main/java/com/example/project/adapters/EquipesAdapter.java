@@ -1,6 +1,8 @@
 package com.example.project.adapters;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,7 @@ import com.example.project.R;
 import com.example.project.activities.AmbienteActivity;
 import com.example.project.activities.EquipeActivity;
 import com.example.project.ambiente.Equipe;
+import com.example.project.model.Ambientes;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -80,10 +83,25 @@ public class EquipesAdapter extends BaseAdapter {
         btnRemover.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatabaseReference reff = FirebaseDatabase.getInstance().getReference().child("Ambientes").child(AmbienteActivity.ambiente.getNomeAmbiente()).child("Equipes");
-                reff.child(equipes.get(position).getNome()).removeValue();
-                Toast.makeText(context, "A equipe " + equipes.get(position).getNome() + " foi removida!", Toast.LENGTH_SHORT).show();
-                AmbienteActivity.ambiente.removerEquipe(position);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Remoção de equipe");
+                builder.setMessage("Tem certeza que deseja remover a equipe?");
+
+                builder.setPositiveButton("Remover", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        DatabaseReference reff = FirebaseDatabase.getInstance().getReference().child("Ambientes").child(AmbienteActivity.ambiente.getNomeAmbiente()).child("Equipes");
+                        reff.child(equipes.get(position).getNome()).removeValue();
+                        Toast.makeText(context, "A equipe " + equipes.get(position).getNome() + " foi removida!", Toast.LENGTH_SHORT).show();
+                        equipes.remove(position);
+                        notifyDataSetChanged();
+                    }
+                });
+
+                builder.setNegativeButton("Cancelar", null);
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
 

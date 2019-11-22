@@ -45,9 +45,7 @@ public class PessoasFragment extends Fragment {
             listViewPessoas = (ListView)view.findViewById(R.id.listViewPessoas);
             adapter = new PessoasAdapter(this.getActivity(), pessoas);
             listViewPessoas.setAdapter(adapter);
-
             btnNovaPessoa = (Button) view.findViewById(R.id.btn_nova_pessoa);
-
             btnNovaPessoa.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -59,4 +57,9 @@ public class PessoasFragment extends Fragment {
 
         return view;
     }
+
+    public void teste() {
+        listViewPessoas.refreshDrawableState();
+    }
+
 }
