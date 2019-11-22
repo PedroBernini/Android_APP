@@ -86,13 +86,13 @@
     <string name="titulo_sobre_D">Perfil com maior índice de Dominância - D</string>
     <string name="sobre_D">Este perfil enfatiza a possibilidade de moldar o ambiente, superando oposições para alcançar resultados.</string>
 
-    <string name="titulo_sobre_I">Perfil com maior índice de Dominância - I</string>
+    <string name="titulo_sobre_I">Perfil com maior índice de Influência - I</string>
     <string name="sobre_I">Este perfil enfatiza a possibilidade de moldar o ambiente, influenciando e persuadindo os demais.</string>
 
-    <string name="titulo_sobre_S">Perfil com maior índice de Dominância - S</string>
+    <string name="titulo_sobre_S">Perfil com maior índice de Estabilidade - S</string>
     <string name="sobre_S">Este perfil enfatiza a possibilidade de cooperar com os demais dentro das circunstâncias existentes para realizar a tarefa.</string>
 
-    <string name="titulo_sobre_C">Perfil com maior índice de Dominância - C</string>
+    <string name="titulo_sobre_C">Perfil com maior índice de Conformidade - C</string>
     <string name="sobre_C">Este perfil enfatiza a possibilidade de trabalhar conscientemente dentro das circunstâncias existentes para assegurar qualidade e precisão.</string>
 
 </resources>

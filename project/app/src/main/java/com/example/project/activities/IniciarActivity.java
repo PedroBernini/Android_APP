@@ -1,5 +1,6 @@
 package com.example.project.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +18,8 @@ public class IniciarActivity extends AppCompatActivity {
     }
 
     public void clickEntrar(View view) {
-        this.onBackPressed();
+        finish();
+        Intent intent = new Intent(this, MainActivity.class);
+        this.startActivity(intent);
     }
 }
